@@ -5,7 +5,8 @@
 ``` SQL
 
 select p.firstName, p.lastName, a.city,a.state from Person P
-left join Address A on p.personId = a.personId;```
+left join Address A on p.personId = a.personId;
+```
 
 #### Comparision of attribute within same table
 
