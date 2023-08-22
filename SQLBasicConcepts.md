@@ -13,12 +13,14 @@ left join Address A on p.personId = a.personId;
 ``` SQL
 select e.name as Employee from Employee e
 inner join Employee m on m.id = e.managerId where e.salary > m.salary;
+```
 
 #### Detecting duplicates
 
 ```SQL
 select email as Email from Person
 group by email having count(email)>1;
+```
 
 #### Detecting exceptions acroos 2 tables
 ``` SQL
@@ -27,11 +29,13 @@ where id not in
 (select c.id from Customers c 
 inner join Orders o 
 on c.id = o.customerId);
+```
 
 #### Detecting and deleting duplicate records within same table
 ``` SQL
 Delete p1 from person p1, Person p2 
 where p1.id > p2.id and p1.email = p2.email;
+```
 
 #### Comparision of records within same tables
 ##### Scenario: Find all dates' Id with higher temperatures compared to its previous dates (yesterday)
@@ -40,18 +44,21 @@ where p1.id > p2.id and p1.email = p2.email;
 select w1.id from Weather w1, Weather w2
 where datediff(w1.recordDate, w2.recordDate) = 1 
 and w1.temperature > w2.temperature;
+```
 
 #### concentration on joins
 
 ``` SQL
 select e.name , b.bonus from Employee e left join Bonus b 
 on e.empId = b.empId where b.bonus < 1000 or b.bonus is NULL;
+```
 
 #### Finding maximum acroos groups 
 ``` SQL 
 select customer_number from Orders 
 group by customer_number order by count(customer_number) desc
 limit 1;
+```
 
 #### Scenario Question
 ##### Scenario:
@@ -96,7 +103,7 @@ There are 4 unique accepted requests, and there are 5 requests in total. So the 
 ``` SQL
 select ifnull(round((count(distinct requester_id,accepter_id)/count(distinct sender_id,send_to_id)),2),0.00) as accept_rate
  from FriendRequest, RequestAccepted;
-
+```
 
 
 
