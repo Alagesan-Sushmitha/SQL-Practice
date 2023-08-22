@@ -70,35 +70,8 @@ limit 1;
 * It is possible that a sender sends multiple requests to the same receiver, and a request could be accepted more than once. In this case, the ‘duplicated’ requests or acceptances are only counted once.
 If there are no requests at all, you should return 0.00 as the accept_rate.
 
-###### Input: 
-FriendRequest table:
-+-----------+------------+--------------+
-| sender_id | send_to_id | request_date |
-+-----------+------------+--------------+
-| 1         | 2          | 2016/06/01   |
-| 1         | 3          | 2016/06/01   |
-| 1         | 4          | 2016/06/01   |
-| 2         | 3          | 2016/06/02   |
-| 3         | 4          | 2016/06/09   |
-+-----------+------------+--------------+
-RequestAccepted table:
-+--------------+-------------+-------------+
-| requester_id | accepter_id | accept_date |
-+--------------+-------------+-------------+
-| 1            | 2           | 2016/06/03  |
-| 1            | 3           | 2016/06/08  |
-| 2            | 3           | 2016/06/08  |
-| 3            | 4           | 2016/06/09  |
-| 3            | 4           | 2016/06/10  |
-+--------------+-------------+-------------+
-Output: 
-+-------------+
-| accept_rate |
-+-------------+
-| 0.8         |
-+-------------+
-###### Explanation: 
-There are 4 unique accepted requests, and there are 5 requests in total. So the rate is 0.80.
+![image](https://github.com/Alagesan-Sushmitha/SQL-Practice/assets/137837229/0cb621e9-19e0-4ee3-9da7-8f61db58fe6b)
+
 
 ``` SQL
 select ifnull(round((count(distinct requester_id,accepter_id)/count(distinct sender_id,send_to_id)),2),0.00) as accept_rate
