@@ -70,11 +70,16 @@ limit 1;
 * It is possible that a sender sends multiple requests to the same receiver, and a request could be accepted more than once. In this case, the ‘duplicated’ requests or acceptances are only counted once.
 If there are no requests at all, you should return 0.00 as the accept_rate.
 
-![image](https://github.com/Alagesan-Sushmitha/SQL-Practice/assets/137837229/0cb621e9-19e0-4ee3-9da7-8f61db58fe6b)
+![image](https://github.com/Alagesan-Sushmitha/SQL-Practice/assets/137837229/3bd7f160-df4d-4648-9691-4e44ccfc4607)
+
 
 
 ``` SQL
-select ifnull(round((count(distinct requester_id,accepter_id)/count(distinct sender_id,send_to_id)),2),0.00) as accept_rate
+select
+ifnull
+(round
+((count
+(distinct requester_id,accepter_id)/count(distinct sender_id,send_to_id)),2),0.00) as accept_rate
  from FriendRequest, RequestAccepted;
 ```
 
